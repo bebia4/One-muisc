@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --grain-opacity: 0.045;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    /* Offset anchor targets so the floating header never covers a heading. */
+    scroll-padding-top: 7rem;
+  }
+
+  body {
+    @apply bg-obsidian-900 text-slate-300 font-sans;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    @apply text-white font-display;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* A visible, on-brand focus ring for keyboard users only. */
+  :focus-visible {
+    outline: 2px solid #F5B544;
+    outline-offset: 3px;
+    border-radius: 2px;
+  }
+
+  ::selection {
+    background-color: rgba(245, 181, 68, 0.28);
+    color: #fff;
+  }
+
+  /* Firefox */
+  * {
+    scrollbar-color: #32323D #0A0A0C;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0A0A0C;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #26262F;
+    border-radius: 999px;
+    border: 2px solid #0A0A0C;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3a3a46;
+  }
+}
+
+@layer components {
+  /* Frosted panel used by nav, cards and form surfaces. */
+  .glass {
+    @apply border border-white/10 bg-white/[0.035] backdrop-blur-md;
+  }
+
+  .glass-strong {
+    @apply border border-white/[0.14] bg-obsidian-850/80 backdrop-blur-xl;
+  }
+
+  /* Hairline highlight along a card's top edge, like light catching an edge. */
+  .edge-light {
+    position: relative;
+  }
+  .edge-light::before {
+    content: '';
+    position: absolute;
+    inset-inline: 1.25rem;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(245, 181, 68, 0.55),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+  }
+  .edge-light:hover::before,
+  .edge-light:focus-within::before {
+    opacity: 1;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(104deg, #FFFFFF 12%, #F6F1E7 38%, #F5B544 76%, #B3712A 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .eyebrow {
+    @apply font-mono text-[0.64rem] uppercase tracking-ultra text-ember-glow/80 sm:text-xs;
+  }
+
+  .hairline {
+    @apply h-px w-full border-0 bg-gradient-to-r from-transparent via-white/15 to-transparent;
+  }
+}
+
+@layer utilities {
+  /* Film grain: a tiled SVG noise field laid over the whole page. */
+  .grain-layer {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  }
+
+  .mask-fade-x {
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
+  }
+
+  /*
+    The browser's own date picker glyph would sit on top of our Calendar icon.
+    Stretch it invisibly across the field instead: one icon, and the whole
+    input becomes the tap target that opens the picker.
+  */
+  .date-field::-webkit-calendar-picker-indicator {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+  }
+
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Respect the OS "reduce motion" setting across CSS-driven animation too. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

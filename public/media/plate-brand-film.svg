@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" width="1600" height="1000" role="img" aria-label="An architectural interior in high contrast with a warm shaft of light" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0.35" y2="1">
+      <stop offset="0" stop-color="#09090C"/>
+      <stop offset="0.55" stop-color="#121218"/>
+      <stop offset="1" stop-color="#07070A"/>
+    </linearGradient>
+    <radialGradient id="key" cx="0.74" cy="0.18" r="0.78">
+      <stop offset="0" stop-color="#F2B457" stop-opacity="0.44"/>
+      <stop offset="0.35" stop-color="#F2B457" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#F2B457" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="rim" cx="0.2" cy="0.12" r="0.6">
+      <stop offset="0" stop-color="#CFE3FF" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#CFE3FF" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="vig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0.5"/>
+      <stop offset="0.42" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.78"/>
+    </linearGradient>
+    <radialGradient id="corner" cx="0.5" cy="0.5" r="0.75">
+      <stop offset="0.55" stop-color="#000" stop-opacity="0"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.62"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="22"/>
+    </filter>
+    <filter id="bokehBlur" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="7"/>
+    </filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="4" stitchTiles="stitch" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+    </filter>
+  </defs>
+
+  <rect width="1600" height="1000" fill="url(#bg)"/>
+  <g filter="url(#soft)" style="mix-blend-mode:screen"><rect x="-40" y="390.04" width="1680" height="188.48" fill="#F2B457" opacity="0.05"/><rect x="-40" y="821.46" width="1680" height="198.48" fill="#F2B457" opacity="0.06"/><rect x="-40" y="840.48" width="1680" height="71.74" fill="#F2B457" opacity="0.09"/><rect x="-40" y="783.07" width="1680" height="213.07" fill="#F2B457" opacity="0.04"/><rect x="-40" y="645.19" width="1680" height="86.1" fill="#F2B457" opacity="0.09"/></g>
+  <rect width="1600" height="1000" fill="url(#key)"/>
+  <rect width="1600" height="1000" fill="url(#rim)"/>
+  <g filter="url(#soft)" style="mix-blend-mode:screen"><polygon points="1184,180 -58.75,1504.44 -89.18,1475.21" fill="#F2B457" opacity="0.11"/><polygon points="1184,180 298.1,1450.93 251.68,1417.28" fill="#F2B457" opacity="0.14"/><polygon points="1184,180 803.25,1529.31 704.92,1497.61" fill="#F2B457" opacity="0.07"/><polygon points="1184,180 874.66,1676.07 782.74,1654.08" fill="#F2B457" opacity="0.13"/><polygon points="1184,180 1274.13,1568.05 1197.85,1570.91" fill="#F2B457" opacity="0.07"/><polygon points="1184,180 1419.05,1758.13 1365.29,1765.21" fill="#F2B457" opacity="0.1"/><polygon points="1184,180 1820.02,1600.32 1767.31,1622.76" fill="#F2B457" opacity="0.09"/><polygon points="1184,180 1936.45,1392.53 1851.97,1441.04" fill="#F2B457" opacity="0.09"/><polygon points="1184,180 2093.39,1066.49 2016.64,1138.94" fill="#F2B457" opacity="0.1"/></g>
+  <g filter="url(#bokehBlur)" style="mix-blend-mode:screen"><circle cx="1599.35" cy="637.14" r="8.94" fill="none" stroke="#F2B457" stroke-width="2.04" opacity="0.08"/><circle cx="1599.35" cy="637.14" r="8.94" fill="#F2B457" opacity="0.03"/><circle cx="958.53" cy="804.93" r="8.84" fill="none" stroke="#F2B457" stroke-width="1.17" opacity="0.07"/><circle cx="958.53" cy="804.93" r="8.84" fill="#F2B457" opacity="0.03"/><circle cx="1218.03" cy="834.86" r="48.55" fill="none" stroke="#F2B457" stroke-width="1.42" opacity="0.33"/><circle cx="1218.03" cy="834.86" r="48.55" fill="#F2B457" opacity="0.13"/><circle cx="616.07" cy="350.35" r="36.17" fill="none" stroke="#F2B457" stroke-width="1.04" opacity="0.08"/><circle cx="616.07" cy="350.35" r="36.17" fill="#F2B457" opacity="0.03"/><circle cx="424.77" cy="877.73" r="28.71" fill="none" stroke="#F2B457" stroke-width="1.07" opacity="0.05"/><circle cx="424.77" cy="877.73" r="28.71" fill="#F2B457" opacity="0.02"/><circle cx="787.69" cy="303.48" r="14.11" fill="none" stroke="#F2B457" stroke-width="3.13" opacity="0.21"/><circle cx="787.69" cy="303.48" r="14.11" fill="#F2B457" opacity="0.08"/><circle cx="674.98" cy="759.19" r="30.1" fill="none" stroke="#F2B457" stroke-width="3.45" opacity="0.18"/><circle cx="674.98" cy="759.19" r="30.1" fill="#F2B457" opacity="0.07"/><circle cx="1.15" cy="399.85" r="48.31" fill="none" stroke="#F2B457" stroke-width="1.13" opacity="0.15"/><circle cx="1.15" cy="399.85" r="48.31" fill="#F2B457" opacity="0.06"/><circle cx="1477.6" cy="709.38" r="34.49" fill="none" stroke="#F2B457" stroke-width="3.44" opacity="0.14"/><circle cx="1477.6" cy="709.38" r="34.49" fill="#F2B457" opacity="0.06"/><circle cx="1523.58" cy="306.72" r="26.53" fill="none" stroke="#F2B457" stroke-width="2.14" opacity="0.22"/><circle cx="1523.58" cy="306.72" r="26.53" fill="#F2B457" opacity="0.09"/><circle cx="110.85" cy="907.41" r="17.76" fill="none" stroke="#F2B457" stroke-width="2.71" opacity="0.11"/><circle cx="110.85" cy="907.41" r="17.76" fill="#F2B457" opacity="0.04"/><circle cx="925.74" cy="749.66" r="38.55" fill="none" stroke="#F2B457" stroke-width="2.36" opacity="0.33"/><circle cx="925.74" cy="749.66" r="38.55" fill="#F2B457" opacity="0.13"/></g>
+  
+  <g fill="#08080b" opacity="0.9">
+      <rect x="0" y="0" width="150" height="1000"/>
+      <rect x="1450" y="0" width="150" height="1000"/>
+      <rect x="210" y="0" width="58" height="1000" opacity="0.75"/><rect x="540" y="0" width="58" height="1000" opacity="0.75"/><rect x="870" y="0" width="58" height="1000" opacity="0.75"/><rect x="1200" y="0" width="58" height="1000" opacity="0.75"/>
+    </g>
+    <rect x="0" y="880" width="1600" height="120" fill="#060608" opacity="0.8"/>
+  <rect width="1600" height="1000" fill="url(#vig)"/>
+  <rect width="1600" height="1000" fill="url(#corner)"/>
+  <rect width="1600" height="1000" filter="url(#grain)" opacity="0.09" style="mix-blend-mode:overlay"/>
+</svg>
