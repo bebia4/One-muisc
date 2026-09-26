@@ -112,3 +112,23 @@ Both forms are front-end only. The integration points are:
 - `onSubmit` in the `Newsletter` component in `src/components/Footer.jsx`
 
 Point them at your CRM, form endpoint or list provider.
+
+## Deployment
+
+The site is a static bundle — `npm run build` emits `dist/`, which can be
+served by any static host with no server-side runtime.
+
+Netlify settings live in `netlify.toml` (build command, publish directory and
+Node version) rather than only in the dashboard, so the build is reproducible
+and shows up in review. **`NODE_VERSION` is load-bearing:** Vite 8 and
+`@vitejs/plugin-react` 6 declare `engines: ">=20.19.0 || >=22.12.0"`, so a
+build image defaulting to an older Node will fail outright.
+
+There is deliberately **no SPA catch-all redirect**. Navigation is same-page
+anchors (`#about`, `#services`, …), not a client-side router, so a catch-all
+would only convert real 404s into silent 200s.
+
+Note that the page requests its three families from Google Fonts at runtime.
+The `font-display`, `font-sans` and `font-mono` stacks all fall back to system
+faces, so a blocked or slow font CDN degrades the typography rather than
+breaking the layout.
