@@ -4,6 +4,12 @@ import { motion } from 'framer-motion';
  * The site's primary action. Renders as <a> when given an href, <button>
  * otherwise, so semantics follow behaviour rather than appearance.
  *
+ * Note: the base classes below include `inline-flex`. Tailwind 4 emits
+ * `.inline-flex` after `.hidden` in the stylesheet, so passing `hidden` (or
+ * `hidden sm:inline-flex`) via `className` will NOT hide this button — the
+ * base class wins on source order regardless of class order. To hide it at a
+ * breakpoint, wrap it in an element that carries the `hidden` class instead.
+ *
  * `variant`:
  *   solid   — amber fill with an ambient bloom, for the single key action
  *   outline — hairline border that warms on hover, for secondary actions

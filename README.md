@@ -142,7 +142,36 @@ Verified with `axe-core` against WCAG 2.1 A and AA — **no violations**.
 
 ## Responsiveness
 
-Verified with no horizontal overflow at 360, 390, 768, 1024, 1440 and 1920 px.
+Verified with no horizontal overflow at 360, 390, 768, 1024, 1440 and 1920 px,
+and with every header element inside the viewport at 360, 390, 412 and 430 px.
+
+> Measure mobile layout with **element bounding boxes**, not
+> `document.scrollWidth`. `body` sets `overflow-x: hidden`, so an element
+> hanging off the right edge is clipped rather than counted — `scrollWidth`
+> reports no overflow while the header is visibly broken. That is exactly how
+> a crushed mobile header once shipped.
+
+### Tailwind 4: `hidden` and source order
+
+Tailwind 3 emitted `.hidden` **last** in the display group, so it beat any
+other display utility on the same element. Tailwind 4 emits the group in
+alphabetical order, so `.inline-flex`, `.inline` and `.inline-block` now come
+*after* `.hidden` and win on source order — regardless of the order the
+classes appear in the `class` attribute.
+
+This means passing `hidden` to a component that hardcodes its own display
+utility silently does nothing. `GlowButton` hardcodes `inline-flex`, so a
+`hidden sm:inline-flex` on it renders at every width; wrap it in an element
+carrying `hidden` instead.
+
+A quick sweep for the whole class of bug, at any width:
+
+```js
+[...document.querySelectorAll('.hidden')]
+  .filter((e) => getComputedStyle(e).display !== 'none')
+```
+
+Anything it returns is a utility the ordering change has broken.
 The tab rail and filter row scroll horizontally on small screens; the project
 mosaic promotes a single lead cell on desktop only.
 
