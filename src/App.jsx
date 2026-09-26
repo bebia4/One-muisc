@@ -5,16 +5,25 @@ import About from './components/About';
 import Values from './components/Values';
 import Services from './components/Services';
 import Showcase from './components/Showcase';
+import Watch from './components/Watch';
 import Booking from './components/Booking';
 import Footer from './components/Footer';
 import ShowreelModal from './components/ShowreelModal';
 import GrainOverlay from './components/primitives/GrainOverlay';
+import { FEATURED_VIDEO } from './data/videos';
 
 export default function App() {
-  const [reel, setReel] = useState({ open: false, project: null });
+  const [reel, setReel] = useState({ open: false, project: null, video: null });
 
-  const openShowreel = useCallback(() => setReel({ open: true, project: null }), []);
-  const openCaseStudy = useCallback((project) => setReel({ open: true, project }), []);
+  // The hero's showreel button opens the featured film itself, not a placeholder.
+  const openShowreel = useCallback(
+    () => setReel({ open: true, project: null, video: FEATURED_VIDEO }),
+    [],
+  );
+  const openCaseStudy = useCallback(
+    (project) => setReel({ open: true, project, video: null }),
+    [],
+  );
   const closeReel = useCallback(() => setReel((r) => ({ ...r, open: false })), []);
 
   return (
@@ -36,12 +45,18 @@ export default function App() {
         <Values />
         <Services />
         <Showcase onPlay={openCaseStudy} />
+        <Watch />
         <Booking />
       </main>
 
       <Footer />
 
-      <ShowreelModal open={reel.open} onClose={closeReel} project={reel.project} />
+      <ShowreelModal
+        open={reel.open}
+        onClose={closeReel}
+        project={reel.project}
+        video={reel.video}
+      />
     </>
   );
 }

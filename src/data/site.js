@@ -20,6 +20,7 @@ export const NAV_LINKS = [
   { label: 'Values', href: '#values' },
   { label: 'Services', href: '#services' },
   { label: 'Work', href: '#work' },
+  { label: 'Watch', href: '#watch' },
   { label: 'Booking', href: '#booking' },
 ];
 
@@ -336,6 +337,7 @@ export const FOOTER_COLUMNS = [
       { label: 'Core Values', href: '#values' },
       { label: 'Our Process', href: '#about' },
       { label: 'Selected Work', href: '#work' },
+      { label: 'Watch', href: '#watch' },
     ],
   },
   {
