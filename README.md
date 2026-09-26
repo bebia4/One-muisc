@@ -36,7 +36,8 @@ src/
 ├── index.css                   Tailwind theme (@theme), grain, glass, focus rings
 ├── data/
 │   ├── site.js                 All editorial copy — edit words here, not in JSX
-│   └── media.js                Image registry and the remote/local switch
+│   ├── media.js                Image registry and the remote/local switch
+│   └── videos.js               Video registry — ids, titles, orientation
 ├── hooks/
 │   ├── useReducedMotion.js     Live OS reduced-motion preference
 │   ├── useScrollState.js       Sticky-header state + active section tracking
@@ -49,6 +50,7 @@ src/
     ├── Values.jsx              Four interactive pillars
     ├── Services.jsx            Five-category tab hub with deliverable tags
     ├── Showcase.jsx            Filterable project mosaic
+    ├── Watch.jsx               Video shelf — the films themselves
     ├── Booking.jsx             Three-step enquiry form with validation
     ├── Footer.jsx              Manifesto, newsletter, navigation, socials
     ├── ShowreelModal.jsx       Player dialog
@@ -84,6 +86,32 @@ pulled from the work in the showcase — rather than stock. Drop them into
 > registry and fallback chain exist so swapping in real photography is a
 > one-file change.
 
+## Video
+
+Films are registered in `src/data/videos.js` — id, title, orientation, poster
+and optional start offset — so the reel is re-cut in one file rather than
+across components.
+
+`VideoEmbed` renders a **facade**: a poster and a play control, with no iframe
+until the visitor presses play. That means a page carrying five videos makes
+**zero requests to YouTube on load** — no player script, no cookies — which is
+both a privacy and a performance property, and it is covered by a test. The
+player uses `youtube-nocookie.com`, and closing the showreel dialog unmounts
+the iframe, which is what actually stops playback.
+
+Posters resolve through the same remote/local chain as photography: YouTube's
+own thumbnail first, falling back to a cinematic plate if the thumbnail does
+not exist (`maxresdefault` is not generated for every upload) or the host is
+unreachable.
+
+Vertical videos (`orientation: 'portrait'`) render 9:16 and are width-capped so
+they do not tower past the viewport.
+
+> Two of the supplied URLs carried an `RD…` playlist — YouTube's auto-generated
+> "radio" mix. Embedding it would roll on into arbitrary third-party videos
+> inside One Gospel Media's own player, so each entry is embedded as a single
+> video instead.
+
 ## Accessibility
 
 Verified with `axe-core` against WCAG 2.1 A and AA — **no violations**.
@@ -94,6 +122,8 @@ Verified with `axe-core` against WCAG 2.1 A and AA — **no violations**.
 - Form fields carry labels, `aria-invalid` and `aria-describedby`; errors use `role="alert"`
 - Filtering announces its result count through a polite live region
 - Hover-revealed copy stays in the DOM and is reachable by keyboard and touch
+- Each video's play control is named for its film (`Play video: <title>`), and
+  every player iframe carries a matching `title`
 - All muted text uses the `mist` / `ash` tokens, which clear 4.5:1 on every panel
   shade in use (Tailwind's own `slate-500` sits at ~4.1:1 here and is not used)
 - Motion collapses to a plain fade under `prefers-reduced-motion`

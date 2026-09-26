@@ -68,7 +68,7 @@ export const MEDIA = {
   'testimony-restored': {
     local: `${P}/plate-testimony.svg`,
     remote: '',
-    alt: 'A close interview frame with a soft warm key and deep falloff into shadow-sm',
+    alt: 'A close interview frame with a soft warm key and deep falloff into shadow',
   },
   'brand-cornerstone': {
     local: `${P}/plate-brand-film.svg`,
