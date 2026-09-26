@@ -11,10 +11,10 @@ glassmorphism panels and an expansive editorial type hierarchy.
 
 | | |
 |---|---|
-| Framework | React 18 (function components) |
-| Build | Vite 5 |
-| Styling | Tailwind CSS 3.4 |
-| Motion | Framer Motion 11 |
+| Framework | React 19 (function components) |
+| Build | Vite 8 |
+| Styling | Tailwind CSS 4 (CSS-first config — see `src/index.css`) |
+| Motion | Framer Motion 13 |
 | Icons | Lucide React (brand marks hand-authored — see below) |
 
 ## Getting started
@@ -33,7 +33,7 @@ npm run media      # regenerate the cinematic plate set
 src/
 ├── App.jsx                     Section composition + showreel dialog state
 ├── main.jsx                    Entry point
-├── index.css                   Design tokens, grain, glass, focus rings
+├── index.css                   Tailwind theme (@theme), grain, glass, focus rings
 ├── data/
 │   ├── site.js                 All editorial copy — edit words here, not in JSX
 │   └── media.js                Image registry and the remote/local switch
@@ -112,3 +112,23 @@ Both forms are front-end only. The integration points are:
 - `onSubmit` in the `Newsletter` component in `src/components/Footer.jsx`
 
 Point them at your CRM, form endpoint or list provider.
+
+## Deployment
+
+The site is a static bundle — `npm run build` emits `dist/`, which can be
+served by any static host with no server-side runtime.
+
+Netlify settings live in `netlify.toml` (build command, publish directory and
+Node version) rather than only in the dashboard, so the build is reproducible
+and shows up in review. **`NODE_VERSION` is load-bearing:** Vite 8 and
+`@vitejs/plugin-react` 6 declare `engines: ">=20.19.0 || >=22.12.0"`, so a
+build image defaulting to an older Node will fail outright.
+
+There is deliberately **no SPA catch-all redirect**. Navigation is same-page
+anchors (`#about`, `#services`, …), not a client-side router, so a catch-all
+would only convert real 404s into silent 200s.
+
+Note that the page requests its three families from Google Fonts at runtime.
+The `font-display`, `font-sans` and `font-mono` stacks all fall back to system
+faces, so a blocked or slow font CDN degrades the typography rather than
+breaking the layout.

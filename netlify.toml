@@ -1,0 +1,17 @@
+# Netlify build settings.
+#
+# Pinned in the repo rather than left to the dashboard so the build is
+# reproducible and reviewable. NODE_VERSION matters: Vite 8 and
+# @vitejs/plugin-react 6 declare engines ">=20.19.0 || >=22.12.0", so an
+# older default build image would fail to build this site.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# No SPA catch-all redirect on purpose: this is a single page whose
+# navigation is same-page anchors (#about, #services, ...), not a client-side
+# router. A catch-all would turn genuine 404s into a silent 200.

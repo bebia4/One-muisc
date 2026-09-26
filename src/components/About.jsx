@@ -31,7 +31,7 @@ function VisionMissionSplit() {
             animate={{ flexGrow: isActive ? 1.25 : 1 }}
             transition={{ duration: 0.6, ease: EASE }}
             style={{ flexBasis: 0 }}
-            className="edge-light group relative min-h-[26rem] flex-1 overflow-hidden rounded-2xl border border-white/10 bg-obsidian-850/60 p-7 backdrop-blur-md transition-colors duration-500 hover:border-ember-glow/25 sm:p-10"
+            className="edge-light group relative min-h-104 flex-1 overflow-hidden rounded-2xl border border-white/10 bg-obsidian-850/60 p-7 backdrop-blur-md transition-colors duration-500 hover:border-ember-glow/25 sm:p-10"
           >
             {/* Backing plate, brought up on hover */}
             <SmartImage
@@ -45,7 +45,7 @@ function VisionMissionSplit() {
             />
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/85 to-obsidian-950/55"
+              className="absolute inset-0 bg-linear-to-t from-obsidian-950 via-obsidian-950/85 to-obsidian-950/55"
             />
 
             <div className="relative flex h-full flex-col">
@@ -124,7 +124,7 @@ export default function About() {
               <motion.div
                 key={pillar.title}
                 variants={fadeUp}
-                className="border-t border-white/[0.09] py-8 first:border-t-0 first:pt-0"
+                className="border-t border-white/9 py-8 first:border-t-0 first:pt-0"
               >
                 <div className="flex items-baseline gap-5">
                   <span className="font-mono text-[0.68rem] tracking-[0.2em] text-ember-glow/70">
@@ -149,11 +149,11 @@ export default function About() {
                   src={primary.src}
                   fallback={primary.fallback}
                   alt={primary.alt}
-                  className="aspect-[4/5] w-full"
+                  className="aspect-4/5 w-full"
                 />
                 <div
                   aria-hidden="true"
-                  className="absolute inset-0 bg-gradient-to-t from-obsidian-950/90 via-transparent to-transparent"
+                  className="absolute inset-0 bg-linear-to-t from-obsidian-950/90 via-transparent to-transparent"
                 />
                 <figcaption className="absolute inset-x-0 bottom-0 p-5">
                   <span className="font-mono text-[0.6rem] uppercase tracking-[0.2em] text-parchment-300">
@@ -178,7 +178,7 @@ export default function About() {
                   src={secondary.src}
                   fallback={secondary.fallback}
                   alt={secondary.alt}
-                  className="aspect-[16/10] w-full"
+                  className="aspect-16/10 w-full"
                 />
               </figure>
             </Reveal>
@@ -201,7 +201,7 @@ export default function About() {
             whileInView="visible"
             viewport={VIEWPORT}
             variants={stagger(0.1)}
-            className="grid gap-px overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.06] sm:grid-cols-2 lg:grid-cols-4"
+            className="grid gap-px overflow-hidden rounded-xl border border-white/8 bg-white/6 sm:grid-cols-2 lg:grid-cols-4"
           >
             {PROCESS_STEPS.map((step) => (
               <motion.li

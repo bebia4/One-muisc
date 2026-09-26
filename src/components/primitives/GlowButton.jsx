@@ -47,7 +47,7 @@ export default function GlowButton({
       {/* Light sweeps across the face on hover, like a sheen on glass. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 -translate-x-[120%] bg-gradient-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-[120%]"
+        className="pointer-events-none absolute inset-0 translate-x-[-120%] bg-linear-to-r from-transparent via-white/25 to-transparent transition-transform duration-700 group-hover:translate-x-[120%]"
       />
       <span className="relative z-10">{children}</span>
       {Icon && (

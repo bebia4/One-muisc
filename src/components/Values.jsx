@@ -27,7 +27,7 @@ function ValueCard({ value, index, isActive, onActivate, onDeactivate }) {
       onBlur={onDeactivate}
       tabIndex={0}
       aria-labelledby={`value-${value.id}-title`}
-      className="edge-light group relative flex min-h-[21rem] flex-col overflow-hidden rounded-2xl border border-white/[0.09] bg-obsidian-850/50 p-7 backdrop-blur-md transition-all duration-500 hover:border-ember-glow/30 hover:bg-obsidian-850/80 focus-visible:border-ember-glow/40 sm:min-h-[24rem]"
+      className="edge-light group relative flex min-h-84 flex-col overflow-hidden rounded-2xl border border-white/9 bg-obsidian-850/50 p-7 backdrop-blur-md transition-all duration-500 hover:border-ember-glow/30 hover:bg-obsidian-850/80 focus-visible:border-ember-glow/40 sm:min-h-96"
     >
       {/* Light pooling in from the top-left corner on hover */}
       <span
@@ -42,7 +42,7 @@ function ValueCard({ value, index, isActive, onActivate, onDeactivate }) {
           className={`grid h-12 w-12 place-items-center rounded-xl border transition-all duration-500 ${
             isActive
               ? 'border-ember-glow/45 bg-ember-glow/12 text-ember-glow'
-              : 'border-white/10 bg-white/[0.04] text-mist'
+              : 'border-white/10 bg-white/4 text-mist'
           }`}
         >
           <Icon className="h-5 w-5" aria-hidden="true" />
@@ -91,7 +91,7 @@ function ValueCard({ value, index, isActive, onActivate, onDeactivate }) {
       {/* Base rule that fills with light as the card activates */}
       <span
         aria-hidden="true"
-        className={`absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-ember-glow to-transparent transition-opacity duration-700 ${
+        className={`absolute inset-x-0 bottom-0 h-px bg-linear-to-r from-transparent via-ember-glow to-transparent transition-opacity duration-700 ${
           isActive ? 'opacity-70' : 'opacity-0'
         }`}
       />
@@ -106,7 +106,7 @@ export default function Values() {
     <section
       id="values"
       aria-labelledby="values-heading"
-      className="relative scroll-mt-28 overflow-hidden border-y border-white/[0.06] bg-obsidian-950/40 py-24 sm:py-32 lg:py-40"
+      className="relative scroll-mt-28 overflow-hidden border-y border-white/6 bg-obsidian-950/40 py-24 sm:py-32 lg:py-40"
     >
       <AmbientOrb
         className="left-1/2 top-0 -translate-x-1/2 opacity-50"

@@ -26,13 +26,13 @@ export default function ShowreelModal({ open, onClose, project }) {
         />
         <div
           aria-hidden="true"
-          className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/30 to-obsidian-950/50"
+          className="absolute inset-0 bg-linear-to-t from-obsidian-950 via-obsidian-950/30 to-obsidian-950/50"
         />
 
         <div className="absolute inset-0 grid place-items-center">
           <div className="text-center">
             <span className="mx-auto grid h-16 w-16 place-items-center rounded-full border border-white/25 bg-obsidian-950/60 backdrop-blur-md">
-              <Play className="h-6 w-6 translate-x-[1px] fill-ember-glow text-ember-glow" aria-hidden="true" />
+              <Play className="h-6 w-6 translate-x-px fill-ember-glow text-ember-glow" aria-hidden="true" />
             </span>
             <p className="mt-5 font-mono text-[0.62rem] uppercase tracking-ultra text-parchment-300">
               Player placeholder — drop your reel here

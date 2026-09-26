@@ -89,8 +89,8 @@ export default function Services() {
                     onClick={() => setActiveIndex(i)}
                     className={`group relative flex shrink-0 items-center gap-3 rounded-xl border px-4 py-4 text-left transition-all duration-400 lg:w-full lg:gap-4 lg:px-5 ${
                       selected
-                        ? 'border-ember-glow/30 bg-white/[0.06]'
-                        : 'border-white/[0.07] bg-transparent hover:border-white/15 hover:bg-white/[0.03]'
+                        ? 'border-ember-glow/30 bg-white/6'
+                        : 'border-white/[0.07] bg-transparent hover:border-white/15 hover:bg-white/3'
                     }`}
                   >
                     {selected && (
