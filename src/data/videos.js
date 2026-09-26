@@ -103,3 +103,36 @@ export function embedUrl(video, { autoplay = true } = {}) {
   if (video.start) params.set('start', String(video.start));
   return `https://www.youtube-nocookie.com/embed/${video.youtubeId}?${params}`;
 }
+
+/**
+ * Placeholder film for each showcase case study.
+ *
+ * The case studies in site.js have no films of their own yet, so each one is
+ * pointed at one of the supplied videos purely so the player is real rather
+ * than a "film in post" card. The five films cycle across the eight entries,
+ * which means several entries currently share a film.
+ *
+ * These pairings are arbitrary: the films are not recordings of these case
+ * studies, and the case studies carry their own illustrative credits and
+ * metrics. Replace each line with that project's actual film as it lands —
+ * the map is written out entry by entry, rather than computed, so a single
+ * project can be repointed without touching the others. A project with no
+ * entry here falls back to the "film in post" card, so deleting a line is
+ * also safe.
+ */
+export const PROJECT_VIDEO = {
+  'conference-elevate': 'blessed-monty-west',
+  'testimony-restored': 'growth-mindset-spark-ovadje',
+  'brand-cornerstone': 'alpha-and-omega-hope-moyo',
+  'live-easter': 'featured-video',
+  'live-worship-nights': 'be-a-blessing',
+  'testimony-first-light': 'blessed-monty-west',
+  'conference-commission': 'growth-mindset-spark-ovadje',
+  'brand-post-suite': 'alpha-and-omega-hope-moyo',
+};
+
+/** The film to play for a showcase project, or undefined if it has none. */
+export function getProjectVideo(projectId) {
+  if (!projectId) return undefined;
+  return getVideo(PROJECT_VIDEO[projectId]);
+}
