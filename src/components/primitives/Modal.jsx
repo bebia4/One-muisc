@@ -58,7 +58,7 @@ export default function Modal({ open, onClose, title, children, labelledBy = 'mo
     <AnimatePresence>
       {open && (
         <motion.div
-          className="fixed inset-0 z-[70] flex items-center justify-center p-4 sm:p-8"
+          className="fixed inset-0 z-70 flex items-center justify-center p-4 sm:p-8"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
@@ -77,7 +77,7 @@ export default function Modal({ open, onClose, title, children, labelledBy = 'mo
             aria-labelledby={labelledBy}
             tabIndex={-1}
             onKeyDown={onKeyDown}
-            className="glass-strong relative z-10 w-full max-w-5xl overflow-hidden rounded-2xl shadow-2xl focus:outline-none"
+            className="glass-strong relative z-10 w-full max-w-5xl overflow-hidden rounded-2xl shadow-2xl focus:outline-hidden"
             initial={{ opacity: 0, scale: 0.96, y: 18 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.97, y: 10 }}

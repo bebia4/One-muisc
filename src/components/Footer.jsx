@@ -38,7 +38,7 @@ function Newsletter() {
           aria-invalid={state === 'error'}
           aria-describedby={state === 'error' ? 'newsletter-error' : undefined}
           disabled={state === 'done'}
-          className="w-full rounded-full border border-white/12 bg-obsidian-950/60 px-5 py-3 text-sm text-white placeholder:text-ash transition-colors duration-300 focus:border-ember-glow/50 focus:outline-none focus:ring-1 focus:ring-ember-glow/25 disabled:opacity-50 sm:max-w-xs"
+          className="w-full rounded-full border border-white/12 bg-obsidian-950/60 px-5 py-3 text-sm text-white placeholder:text-ash transition-colors duration-300 focus:border-ember-glow/50 focus:outline-hidden focus:ring-1 focus:ring-ember-glow/25 disabled:opacity-50 sm:max-w-xs"
         />
         <button
           type="submit"
@@ -59,7 +59,7 @@ function Newsletter() {
         </button>
       </div>
 
-      <p aria-live="polite" className="mt-2 min-h-[1rem] text-[0.72rem]">
+      <p aria-live="polite" className="mt-2 min-h-4 text-[0.72rem]">
         {state === 'error' && (
           <span id="newsletter-error" className="text-red-400">Please enter a valid email address.</span>
         )}
@@ -190,7 +190,7 @@ export default function Footer() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 1, ease: EASE }}
-            className="whitespace-nowrap text-center font-display text-[10.2vw] leading-none tracking-[-0.03em] text-white/[0.055]"
+            className="whitespace-nowrap text-center font-display text-[10.2vw] leading-none tracking-[-0.03em] text-white/5.5"
           >
             ONE GOSPEL MEDIA
           </motion.p>

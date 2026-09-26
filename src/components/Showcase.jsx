@@ -19,7 +19,7 @@ function ProjectCard({ project, onPlay, featured }) {
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.96 }}
       transition={{ duration: 0.5, ease: EASE }}
-      className={`group relative overflow-hidden rounded-2xl border border-white/[0.09] bg-obsidian-850 ${
+      className={`group relative overflow-hidden rounded-2xl border border-white/9 bg-obsidian-850 ${
         featured ? 'sm:col-span-2 lg:row-span-2' : ''
       }`}
     >
@@ -27,22 +27,22 @@ function ProjectCard({ project, onPlay, featured }) {
         src={media.src}
         fallback={media.fallback}
         alt={media.alt}
-        className={`w-full ${featured ? 'aspect-[16/11] lg:aspect-[4/3]' : 'aspect-[16/11]'}`}
-        imgClassName="transition-transform duration-[1200ms] ease-out group-hover:scale-[1.07]"
+        className={`w-full ${featured ? 'aspect-16/11 lg:aspect-4/3' : 'aspect-16/11'}`}
+        imgClassName="transition-transform duration-1200 ease-out group-hover:scale-[1.07]"
       />
 
       {/* Permanent floor gradient so text is always legible, deepening on hover */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/45 to-transparent transition-opacity duration-500 group-hover:from-obsidian-950 group-hover:via-obsidian-950/70"
+        className="absolute inset-0 bg-linear-to-t from-obsidian-950 via-obsidian-950/45 to-transparent transition-opacity duration-500 group-hover:from-obsidian-950 group-hover:via-obsidian-950/70"
       />
 
       {/* Top meta */}
       <div className="absolute inset-x-0 top-0 flex items-start justify-between gap-3 p-5">
-        <span className="rounded-full border border-white/15 bg-obsidian-950/65 px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-parchment-200 backdrop-blur-sm">
+        <span className="rounded-full border border-white/15 bg-obsidian-950/65 px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-parchment-200 backdrop-blur-xs">
           {project.format}
         </span>
-        <span className="rounded-full border border-white/15 bg-obsidian-950/65 px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-parchment-200 backdrop-blur-sm">
+        <span className="rounded-full border border-white/15 bg-obsidian-950/65 px-3 py-1.5 font-mono text-[0.58rem] uppercase tracking-[0.18em] text-parchment-200 backdrop-blur-xs">
           {project.runtime}
         </span>
       </div>
@@ -56,7 +56,7 @@ function ProjectCard({ project, onPlay, featured }) {
           aria-label={`Play case study: ${project.title} for ${project.client}`}
           className="grid h-14 w-14 scale-90 place-items-center rounded-full border border-white/30 bg-obsidian-950/55 opacity-0 backdrop-blur-md transition-all duration-500 hover:border-ember-glow hover:text-ember-glow focus-visible:scale-100 focus-visible:opacity-100 group-hover:scale-100 group-hover:opacity-100"
         >
-          <Play className="h-5 w-5 translate-x-[1px] fill-current text-white" aria-hidden="true" />
+          <Play className="h-5 w-5 translate-x-px fill-current text-white" aria-hidden="true" />
         </button>
       </div>
 
@@ -85,7 +85,7 @@ function ProjectCard({ project, onPlay, featured }) {
               {project.tags.map((tag) => (
                 <li
                   key={tag}
-                  className="rounded-full border border-white/12 bg-white/[0.05] px-2.5 py-1 text-[0.62rem] tracking-wide text-parchment-300"
+                  className="rounded-full border border-white/12 bg-white/5 px-2.5 py-1 text-[0.62rem] tracking-wide text-parchment-300"
                 >
                   {tag}
                 </li>
@@ -110,7 +110,7 @@ export default function Showcase({ onPlay }) {
     <section
       id="work"
       aria-labelledby="work-heading"
-      className="relative scroll-mt-28 overflow-hidden border-y border-white/[0.06] bg-obsidian-950/40 py-24 sm:py-32 lg:py-40"
+      className="relative scroll-mt-28 overflow-hidden border-y border-white/6 bg-obsidian-950/40 py-24 sm:py-32 lg:py-40"
     >
       <AmbientOrb
         className="-left-40 bottom-0 opacity-50"

@@ -156,7 +156,7 @@ export default function Hero({ onOpenShowreel }) {
           transition={{ duration: 1.1, ease: EASE, delay: 0.55 }}
           className="relative mt-14 sm:mt-20"
         >
-          <div className="glass relative aspect-[16/10] w-full overflow-hidden rounded-xl sm:aspect-[21/9]">
+          <div className="glass relative aspect-16/10 w-full overflow-hidden rounded-xl sm:aspect-21/9">
             <SmartImage
               src={hero.src}
               fallback={hero.fallback}
@@ -169,26 +169,26 @@ export default function Hero({ onOpenShowreel }) {
             {/* Cinematic wash over the plate */}
             <div
               aria-hidden="true"
-              className="absolute inset-0 bg-gradient-to-t from-obsidian-950 via-obsidian-950/25 to-transparent"
+              className="absolute inset-0 bg-linear-to-t from-obsidian-950 via-obsidian-950/25 to-transparent"
             />
 
             <ViewfinderChrome />
 
             {/* Top HUD row */}
             <div className="absolute inset-x-0 top-0 z-30 flex items-center justify-between p-4 font-mono text-[0.6rem] uppercase tracking-[0.2em] text-parchment-200 sm:p-6 sm:text-[0.68rem]">
-              <span className="flex items-center gap-2 rounded-full border border-white/15 bg-obsidian-950/60 px-3 py-1.5 backdrop-blur-sm">
+              <span className="flex items-center gap-2 rounded-full border border-white/15 bg-obsidian-950/60 px-3 py-1.5 backdrop-blur-xs">
                 <span className="h-1.5 w-1.5 animate-rec-pulse rounded-full bg-red-500" aria-hidden="true" />
                 REC
               </span>
               <span className="hidden gap-4 sm:flex">
-                <span className="rounded-full border border-white/15 bg-obsidian-950/60 px-3 py-1.5 backdrop-blur-sm">
+                <span className="rounded-full border border-white/15 bg-obsidian-950/60 px-3 py-1.5 backdrop-blur-xs">
                   4K · 24 FPS
                 </span>
-                <span className="rounded-full border border-white/15 bg-obsidian-950/60 px-3 py-1.5 backdrop-blur-sm">
+                <span className="rounded-full border border-white/15 bg-obsidian-950/60 px-3 py-1.5 backdrop-blur-xs">
                   ISO 800
                 </span>
               </span>
-              <span className="rounded-full border border-white/15 bg-obsidian-950/60 px-3 py-1.5 backdrop-blur-sm">
+              <span className="rounded-full border border-white/15 bg-obsidian-950/60 px-3 py-1.5 backdrop-blur-xs">
                 01:47:22
               </span>
             </div>
@@ -209,7 +209,7 @@ export default function Hero({ onOpenShowreel }) {
                   className="absolute inset-0 rounded-full bg-ember-glow/20 opacity-0 blur-xl transition-opacity duration-500 group-hover:opacity-100"
                 />
                 <Play
-                  className="relative h-5 w-5 translate-x-[1px] fill-white text-white transition-colors group-hover:fill-ember-glow group-hover:text-ember-glow sm:h-6 sm:w-6"
+                  className="relative h-5 w-5 translate-x-px fill-white text-white transition-colors group-hover:fill-ember-glow group-hover:text-ember-glow sm:h-6 sm:w-6"
                   aria-hidden="true"
                 />
               </motion.button>
@@ -233,7 +233,7 @@ export default function Hero({ onOpenShowreel }) {
           whileInView="visible"
           viewport={{ once: true, amount: 0.4 }}
           variants={stagger(0.08)}
-          className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/[0.08] bg-white/[0.06] sm:mt-16 lg:grid-cols-4"
+          className="mt-14 grid grid-cols-2 gap-px overflow-hidden rounded-xl border border-white/8 bg-white/6 sm:mt-16 lg:grid-cols-4"
         >
           {HERO_STATS.map((stat) => (
             <motion.div

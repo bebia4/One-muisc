@@ -23,7 +23,7 @@ const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 /** Shared input styling, kept in one place so every field matches exactly. */
 const fieldClass =
-  'w-full rounded-lg border border-white/12 bg-obsidian-950/60 px-4 py-3 text-sm text-white placeholder:text-ash transition-colors duration-300 focus:border-ember-glow/50 focus:outline-none focus:ring-1 focus:ring-ember-glow/30';
+  'w-full rounded-lg border border-white/12 bg-obsidian-950/60 px-4 py-3 text-sm text-white placeholder:text-ash transition-colors duration-300 focus:border-ember-glow/50 focus:outline-hidden focus:ring-1 focus:ring-ember-glow/30';
 
 const labelClass = 'mb-2 block font-mono text-[0.6rem] uppercase tracking-[0.18em] text-mist';
 
@@ -167,11 +167,11 @@ export default function Booking() {
                 src={media.src}
                 fallback={media.fallback}
                 alt={media.alt}
-                className="aspect-[4/3] w-full"
+                className="aspect-4/3 w-full"
               />
               <div
                 aria-hidden="true"
-                className="absolute inset-0 bg-gradient-to-t from-obsidian-950 to-transparent"
+                className="absolute inset-0 bg-linear-to-t from-obsidian-950 to-transparent"
               />
               <figcaption className="absolute inset-x-0 bottom-0 p-6">
                 <p className="font-display text-lg text-parchment-100">{BRAND.location}</p>
@@ -196,7 +196,7 @@ export default function Booking() {
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5, ease: EASE }}
-                    className="flex min-h-[28rem] flex-col items-center justify-center text-center"
+                    className="flex min-h-112 flex-col items-center justify-center text-center"
                     role="status"
                   >
                     <span className="grid h-16 w-16 place-items-center rounded-full border border-ember-glow/40 bg-ember-glow/10">
@@ -283,7 +283,7 @@ export default function Booking() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -24 }}
                           transition={{ duration: 0.4, ease: EASE }}
-                          className="min-h-[22rem]"
+                          className="min-h-88"
                         >
                           <fieldset>
                             <legend className={labelClass}>
@@ -327,7 +327,7 @@ export default function Booking() {
                                   min={today}
                                   value={form.date}
                                   onChange={(e) => update('date', e.target.value)}
-                                  className={`${fieldClass} date-field [color-scheme:dark]`}
+                                  className={`${fieldClass} date-field scheme-dark`}
                                 />
                                 <Calendar
                                   className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ash"
@@ -364,7 +364,7 @@ export default function Booking() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -24 }}
                           transition={{ duration: 0.4, ease: EASE }}
-                          className="min-h-[22rem]"
+                          className="min-h-88"
                         >
                           <div>
                             <label htmlFor="booking-org" className={labelClass}>
@@ -407,7 +407,7 @@ export default function Booking() {
                           animate={{ opacity: 1, x: 0 }}
                           exit={{ opacity: 0, x: -24 }}
                           transition={{ duration: 0.4, ease: EASE }}
-                          className="min-h-[22rem]"
+                          className="min-h-88"
                         >
                           <div className="grid gap-5 sm:grid-cols-2">
                             <div>
@@ -495,7 +495,7 @@ export default function Booking() {
                     </AnimatePresence>
 
                     {/* Controls */}
-                    <div className="mt-8 flex items-center justify-between gap-4 border-t border-white/[0.08] pt-6">
+                    <div className="mt-8 flex items-center justify-between gap-4 border-t border-white/8 pt-6">
                       <button
                         type="button"
                         onClick={goBack}

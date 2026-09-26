@@ -52,7 +52,7 @@ export default function Navbar() {
   return (
     <>
       <motion.div
-        className="fixed inset-x-0 top-0 z-[65] h-[2px] origin-left bg-gradient-to-r from-ember-deep via-ember-glow to-ember-warm"
+        className="fixed inset-x-0 top-0 z-65 h-[2px] origin-left bg-linear-to-r from-ember-deep via-ember-glow to-ember-warm"
         style={{ scaleX: progress }}
         aria-hidden="true"
       />
@@ -98,7 +98,7 @@ export default function Navbar() {
                     {isActive && (
                       <motion.span
                         layoutId="nav-pill"
-                        className="absolute inset-0 rounded-full border border-ember-glow/25 bg-white/[0.06]"
+                        className="absolute inset-0 rounded-full border border-ember-glow/25 bg-white/6"
                         transition={{ type: 'spring', stiffness: 380, damping: 32 }}
                       />
                     )}
@@ -146,7 +146,7 @@ export default function Navbar() {
             className="fixed inset-0 z-40 lg:hidden"
           >
             <div
-              className="absolute inset-0 bg-obsidian-950/[0.97] backdrop-blur-2xl"
+              className="absolute inset-0 bg-obsidian-950/97 backdrop-blur-2xl"
               onClick={() => setMenuOpen(false)}
               aria-hidden="true"
             />

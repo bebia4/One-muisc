@@ -41,7 +41,7 @@ export default function SmartImage({
       {/* Tonal placeholder, faded out once the real frame paints. */}
       <div
         aria-hidden="true"
-        className={`absolute inset-0 bg-gradient-to-br from-obsidian-800 via-obsidian-850 to-obsidian-950 transition-opacity duration-700 ${
+        className={`absolute inset-0 bg-linear-to-br from-obsidian-800 via-obsidian-850 to-obsidian-950 transition-opacity duration-700 ${
           loaded ? 'opacity-0' : 'opacity-100'
         }`}
       />

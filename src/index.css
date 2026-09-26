@@ -1,6 +1,215 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+  --color-obsidian-500: #32323d;
+  --color-obsidian-600: #26262f;
+  --color-obsidian-700: #1d1d24;
+  --color-obsidian-750: #17171d;
+  --color-obsidian-800: #121216;
+  --color-obsidian-850: #0e0e12;
+  --color-obsidian-900: #0a0a0c;
+  --color-obsidian-950: #070709;
+
+  --color-ember-glow: #f5b544;
+  --color-ember-warm: #e09a3c;
+  --color-ember-deep: #b3712a;
+
+  --color-mist: #a8b2c1;
+  --color-ash: #8a94a5;
+
+  --color-parchment-100: #f6f1e7;
+  --color-parchment-200: #e9e0ce;
+  --color-parchment-300: #d6c9b0;
+  --color-parchment-400: #b8a98c;
+
+  --font-display: 'Bodoni Moda', 'Playfair Display', Georgia, serif;
+  --font-sans: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
+  --transition-duration-400: 400ms;
+  --transition-duration-600: 600ms;
+
+  --tracking-ultra: 0.35em;
+  --tracking-mega: 0.5em;
+
+  --container-8xl: 88rem;
+
+  --animate-drift-slow: drift 26s ease-in-out infinite;
+  --animate-drift-slower: drift 38s ease-in-out infinite;
+  --animate-rec-pulse: recPulse 1.8s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
+  --animate-sheen: sheen 3.2s ease-in-out infinite;
+
+  @keyframes drift {
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+      transform: translate3d(3%, -4%, 0) scale(1.08);
+    }
+    66% {
+      transform: translate3d(-3%, 3%, 0) scale(0.95);
+    }
+  }
+  @keyframes recPulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.25;
+    }
+  }
+  @keyframes marquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes sheen {
+    0% {
+      transform: translateX(-120%);
+    }
+    60%,
+    100% {
+      transform: translateX(220%);
+    }
+  }
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility glass {
+  /* Frosted panel used by nav, cards and form surfaces. */
+  @apply border border-white/10 bg-white/[0.035] backdrop-blur-md;
+}
+
+@utility glass-strong {
+  @apply border border-white/[0.14] bg-obsidian-850/80 backdrop-blur-xl;
+}
+
+@utility edge-light {
+  /* Hairline highlight along a card's top edge, like light catching an edge. */
+  position: relative;
+  &::before {
+    content: '';
+    position: absolute;
+    inset-inline: 1.25rem;
+    top: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(245, 181, 68, 0.55),
+      transparent
+    );
+    opacity: 0;
+    transition: opacity 0.45s ease;
+    pointer-events: none;
+  }
+  &:hover::before {
+    opacity: 1;
+  }
+  &:focus-within::before {
+    opacity: 1;
+  }
+}
+
+@utility text-gradient-warm {
+  background: linear-gradient(
+    104deg,
+    #ffffff 12%,
+    #f6f1e7 38%,
+    #f5b544 76%,
+    #b3712a 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility eyebrow {
+  @apply font-mono text-[0.64rem] uppercase tracking-ultra text-ember-glow/80 sm:text-xs;
+}
+
+@utility hairline {
+  @apply h-px w-full border-0 bg-linear-to-r from-transparent via-white/15 to-transparent;
+}
+
+@utility grain-layer {
+  /* Film grain: a tiled SVG noise field laid over the whole page. */
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+@utility mask-fade-b {
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
+@utility mask-fade-x {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    #000 12%,
+    #000 88%,
+    transparent
+  );
+}
+
+@utility date-field {
+  /*
+    The browser's own date picker glyph would sit on top of our Calendar icon.
+    Stretch it invisibly across the field instead: one icon, and the whole
+    input becomes the tap target that opens the picker.
+  */
+  &::-webkit-calendar-picker-indicator {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    opacity: 0;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
 
 @layer base {
   :root {
@@ -61,101 +270,6 @@
   }
   ::-webkit-scrollbar-thumb:hover {
     background: #3a3a46;
-  }
-}
-
-@layer components {
-  /* Frosted panel used by nav, cards and form surfaces. */
-  .glass {
-    @apply border border-white/10 bg-white/[0.035] backdrop-blur-md;
-  }
-
-  .glass-strong {
-    @apply border border-white/[0.14] bg-obsidian-850/80 backdrop-blur-xl;
-  }
-
-  /* Hairline highlight along a card's top edge, like light catching an edge. */
-  .edge-light {
-    position: relative;
-  }
-  .edge-light::before {
-    content: '';
-    position: absolute;
-    inset-inline: 1.25rem;
-    top: 0;
-    height: 1px;
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(245, 181, 68, 0.55),
-      transparent
-    );
-    opacity: 0;
-    transition: opacity 0.45s ease;
-    pointer-events: none;
-  }
-  .edge-light:hover::before,
-  .edge-light:focus-within::before {
-    opacity: 1;
-  }
-
-  .text-gradient-warm {
-    background: linear-gradient(104deg, #FFFFFF 12%, #F6F1E7 38%, #F5B544 76%, #B3712A 100%);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-  }
-
-  .eyebrow {
-    @apply font-mono text-[0.64rem] uppercase tracking-ultra text-ember-glow/80 sm:text-xs;
-  }
-
-  .hairline {
-    @apply h-px w-full border-0 bg-gradient-to-r from-transparent via-white/15 to-transparent;
-  }
-}
-
-@layer utilities {
-  /* Film grain: a tiled SVG noise field laid over the whole page. */
-  .grain-layer {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E");
-    background-repeat: repeat;
-  }
-
-  .mask-fade-b {
-    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
-  }
-
-  .mask-fade-x {
-    -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-    mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-  }
-
-  /*
-    The browser's own date picker glyph would sit on top of our Calendar icon.
-    Stretch it invisibly across the field instead: one icon, and the whole
-    input becomes the tap target that opens the picker.
-  */
-  .date-field::-webkit-calendar-picker-indicator {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    cursor: pointer;
-    opacity: 0;
-  }
-
-  .no-scrollbar {
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-
-  .preserve-3d {
-    transform-style: preserve-3d;
   }
 }
 

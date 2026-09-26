@@ -11,10 +11,10 @@ glassmorphism panels and an expansive editorial type hierarchy.
 
 | | |
 |---|---|
-| Framework | React 18 (function components) |
-| Build | Vite 5 |
-| Styling | Tailwind CSS 3.4 |
-| Motion | Framer Motion 11 |
+| Framework | React 19 (function components) |
+| Build | Vite 8 |
+| Styling | Tailwind CSS 4 (CSS-first config — see `src/index.css`) |
+| Motion | Framer Motion 13 |
 | Icons | Lucide React (brand marks hand-authored — see below) |
 
 ## Getting started
@@ -33,7 +33,7 @@ npm run media      # regenerate the cinematic plate set
 src/
 ├── App.jsx                     Section composition + showreel dialog state
 ├── main.jsx                    Entry point
-├── index.css                   Design tokens, grain, glass, focus rings
+├── index.css                   Tailwind theme (@theme), grain, glass, focus rings
 ├── data/
 │   ├── site.js                 All editorial copy — edit words here, not in JSX
 │   └── media.js                Image registry and the remote/local switch
