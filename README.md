@@ -107,6 +107,18 @@ unreachable.
 Vertical videos (`orientation: 'portrait'`) render 9:16 and are width-capped so
 they do not tower past the viewport.
 
+### Case study films
+
+`PROJECT_VIDEO` in the same file points each showcase case study at a film, so
+opening one plays a real player rather than a "film in post" card. The five
+films currently cycle across the eight entries, so several entries share one.
+
+**These pairings are placeholders.** The films are not recordings of these case
+studies, and the case studies carry their own illustrative credits and metrics.
+The map is written out entry by entry rather than computed, so a project can be
+repointed at its real film without touching the others; deleting a line is also
+safe, and that project falls back to the "film in post" card.
+
 > Two of the supplied URLs carried an `RD…` playlist — YouTube's auto-generated
 > "radio" mix. Embedding it would roll on into arbitrary third-party videos
 > inside One Gospel Media's own player, so each entry is embedded as a single

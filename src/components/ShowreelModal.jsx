@@ -3,13 +3,16 @@ import Modal from './primitives/Modal';
 import SmartImage from './primitives/SmartImage';
 import VideoEmbed from './primitives/VideoEmbed';
 import { getMedia } from '../data/media';
+import { getProjectVideo } from '../data/videos';
 
 /**
  * The showreel dialog.
  *
- * Given a `video` it plays that film. Given a `project` instead it frames that
- * case study's plate like a player at rest, with the metadata a producer would
- * want alongside it — those entries have no film attached yet.
+ * Given a `video` it plays that film. Given a `project`, it plays whichever
+ * film that case study is currently pointed at (see PROJECT_VIDEO), keeping
+ * the project's own title, blurb and metadata around the player. A project
+ * with no film mapped still falls back to the plate framed as a player at
+ * rest.
  *
  * The player mounts with autoPlay because reaching this dialog already took a
  * deliberate press; and because Modal only renders its children while open,
@@ -17,6 +20,8 @@ import { getMedia } from '../data/media';
  */
 export default function ShowreelModal({ open, onClose, project, video }) {
   const media = getMedia(project?.id || 'hero');
+  // An explicitly passed film wins; otherwise fall back to the project's.
+  const film = video || getProjectVideo(project?.id);
   const title = video
     ? video.title
     : project
@@ -25,8 +30,8 @@ export default function ShowreelModal({ open, onClose, project, video }) {
 
   return (
     <Modal open={open} onClose={onClose} title={project ? 'Case Study' : 'Showreel'} labelledBy="showreel-title">
-      {video ? (
-        <VideoEmbed video={video} autoPlay className="bg-obsidian-950" />
+      {film ? (
+        <VideoEmbed video={film} autoPlay className="bg-obsidian-950" />
       ) : (
         <div className="relative aspect-video w-full bg-obsidian-950">
           <SmartImage
@@ -75,7 +80,7 @@ export default function ShowreelModal({ open, onClose, project, video }) {
           </p>
         </div>
 
-        {!video && (
+        {project && (
         <ul className="flex shrink-0 flex-wrap gap-2">
           <li className="inline-flex items-center gap-1.5 rounded-full border border-white/12 px-3 py-1.5 font-mono text-[0.6rem] uppercase tracking-[0.16em] text-mist">
             <Clock className="h-3 w-3" aria-hidden="true" />
