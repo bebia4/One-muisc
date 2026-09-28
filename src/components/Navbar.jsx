@@ -77,7 +77,7 @@ export default function Navbar() {
             className="flex shrink-0 items-center rounded-full"
             aria-label="One Gospel Media — back to top"
           >
-            <Logo className="h-9 w-9" withWordmark />
+            <Logo className="h-10 w-auto" withWordmark />
           </a>
 
           {/* Desktop links */}

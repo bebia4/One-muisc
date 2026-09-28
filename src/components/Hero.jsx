@@ -93,7 +93,7 @@ export default function Hero({ onOpenShowreel }) {
               </span>
             </span>
             <span className="font-mono text-[0.62rem] uppercase tracking-ultra text-ash">
-              Faith-Based Creative Media Agency · Est. {BRAND.founded}
+              {BRAND.strapline}
             </span>
           </motion.div>
 

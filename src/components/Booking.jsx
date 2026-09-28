@@ -181,6 +181,12 @@ export default function Booking() {
                 >
                   {BRAND.email}
                 </a>
+                <a
+                  href={`tel:${BRAND.phoneHref}`}
+                  className="mt-1 block font-mono text-[0.68rem] tracking-[0.14em] text-ember-glow transition-colors hover:text-parchment-100"
+                >
+                  {BRAND.phone}
+                </a>
               </figcaption>
             </figure>
           </div>

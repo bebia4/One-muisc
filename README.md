@@ -57,6 +57,33 @@ src/
     └── primitives/             Reusable building blocks
 ```
 
+## Brand
+
+The logo is the company's own mark — a torch flame rising behind a cross, set
+in the gold ring that doubles as the "O" of ONE — lifted from One Gospel
+Media's business card rather than redrawn, so the site matches print exactly.
+
+```
+public/brand/
+├── ogm-mark.png              navy cross   — light backgrounds, print
+├── ogm-mark-reversed.png     cream cross  — this site's obsidian canvas
+├── ogm-lockup.png            full lockup incl. wordmark and tagline
+└── ogm-lockup-reversed.png
+```
+
+Brand colours sampled from the card: **navy `#002047`**, **gold `#CF980F` →
+`#F3BC24`**.
+
+The reversed files exist because the brand navy is all but invisible on a
+near-black page. Only the navy is remapped to parchment; the gold is untouched,
+so the mark keeps its original weight and gradient. `Logo` renders the reversed
+mark by default and takes `variant="light"` for the navy original.
+
+The wordmark beside the mark is live text, not part of the image, so it stays
+crisp at any size and remains selectable and searchable. When the wordmark is
+shown the image is marked decorative (`alt=""`), because the text already names
+the company.
+
 ## Imagery
 
 Every image resolves through `src/data/media.js`, so art direction changes in
@@ -183,6 +210,15 @@ Both forms are front-end only. The integration points are:
 - `onSubmit` in the `Newsletter` component in `src/components/Footer.jsx`
 
 Point them at your CRM, form endpoint or list provider.
+
+## Contact details
+
+Name, role, phone, email and address live in `BRAND` in `src/data/site.js` and
+flow from there into the header, footer and booking panel — edit them once.
+
+`phone` is the number as printed and as a Nigerian caller dials it;
+`phoneHref` is the same number in E.164 (`+234…`) so the `tel:` link also works
+for anyone calling from abroad. Keep both in step.
 
 ## Deployment
 
