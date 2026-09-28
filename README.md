@@ -57,6 +57,33 @@ src/
     └── primitives/             Reusable building blocks
 ```
 
+## Brand
+
+The logo is the company's own mark — a torch flame rising behind a cross, set
+in the gold ring that doubles as the "O" of ONE — lifted from One Gospel
+Media's business card rather than redrawn, so the site matches print exactly.
+
+```
+public/brand/
+├── ogm-mark.png              navy cross   — light backgrounds, print
+├── ogm-mark-reversed.png     cream cross  — this site's obsidian canvas
+├── ogm-lockup.png            full lockup incl. wordmark and tagline
+└── ogm-lockup-reversed.png
+```
+
+Brand colours sampled from the card: **navy `#002047`**, **gold `#CF980F` →
+`#F3BC24`**.
+
+The reversed files exist because the brand navy is all but invisible on a
+near-black page. Only the navy is remapped to parchment; the gold is untouched,
+so the mark keeps its original weight and gradient. `Logo` renders the reversed
+mark by default and takes `variant="light"` for the navy original.
+
+The wordmark beside the mark is live text, not part of the image, so it stays
+crisp at any size and remains selectable and searchable. When the wordmark is
+shown the image is marked decorative (`alt=""`), because the text already names
+the company.
+
 ## Imagery
 
 Every image resolves through `src/data/media.js`, so art direction changes in
@@ -142,7 +169,36 @@ Verified with `axe-core` against WCAG 2.1 A and AA — **no violations**.
 
 ## Responsiveness
 
-Verified with no horizontal overflow at 360, 390, 768, 1024, 1440 and 1920 px.
+Verified with no horizontal overflow at 360, 390, 768, 1024, 1440 and 1920 px,
+and with every header element inside the viewport at 360, 390, 412 and 430 px.
+
+> Measure mobile layout with **element bounding boxes**, not
+> `document.scrollWidth`. `body` sets `overflow-x: hidden`, so an element
+> hanging off the right edge is clipped rather than counted — `scrollWidth`
+> reports no overflow while the header is visibly broken. That is exactly how
+> a crushed mobile header once shipped.
+
+### Tailwind 4: `hidden` and source order
+
+Tailwind 3 emitted `.hidden` **last** in the display group, so it beat any
+other display utility on the same element. Tailwind 4 emits the group in
+alphabetical order, so `.inline-flex`, `.inline` and `.inline-block` now come
+*after* `.hidden` and win on source order — regardless of the order the
+classes appear in the `class` attribute.
+
+This means passing `hidden` to a component that hardcodes its own display
+utility silently does nothing. `GlowButton` hardcodes `inline-flex`, so a
+`hidden sm:inline-flex` on it renders at every width; wrap it in an element
+carrying `hidden` instead.
+
+A quick sweep for the whole class of bug, at any width:
+
+```js
+[...document.querySelectorAll('.hidden')]
+  .filter((e) => getComputedStyle(e).display !== 'none')
+```
+
+Anything it returns is a utility the ordering change has broken.
 The tab rail and filter row scroll horizontally on small screens; the project
 mosaic promotes a single lead cell on desktop only.
 
@@ -154,6 +210,15 @@ Both forms are front-end only. The integration points are:
 - `onSubmit` in the `Newsletter` component in `src/components/Footer.jsx`
 
 Point them at your CRM, form endpoint or list provider.
+
+## Contact details
+
+Name, role, phone, email and address live in `BRAND` in `src/data/site.js` and
+flow from there into the header, footer and booking panel — edit them once.
+
+`phone` is the number as printed and as a Nigerian caller dials it;
+`phoneHref` is the same number in E.164 (`+234…`) so the `tel:` link also works
+for anyone calling from abroad. Keep both in step.
 
 ## Deployment
 

@@ -96,7 +96,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
           {/* Brand + newsletter */}
           <div className="lg:col-span-5">
-            <Logo className="h-11 w-11" withWordmark />
+            <Logo className="h-12 w-auto" withWordmark />
             <p className="mt-6 max-w-sm text-sm leading-relaxed text-ash">
               {BRAND.tagline}
             </p>
@@ -142,12 +142,14 @@ export default function Footer() {
                   className="flex items-start gap-2.5 text-mist transition-colors hover:text-white"
                 >
                   <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-ember-glow/60" aria-hidden="true" />
-                  <span className="break-all">{BRAND.email}</span>
+                  {/* Slightly tighter than its siblings so the address fits the column
+                      on one line instead of breaking mid-domain. */}
+                  <span className="break-all text-[0.78rem] leading-5">{BRAND.email}</span>
                 </a>
               </li>
               <li>
                 <a
-                  href={`tel:${BRAND.phone.replace(/[^+\d]/g, '')}`}
+                  href={`tel:${BRAND.phoneHref}`}
                   className="flex items-start gap-2.5 text-mist transition-colors hover:text-white"
                 >
                   <Phone className="mt-0.5 h-3.5 w-3.5 shrink-0 text-ember-glow/60" aria-hidden="true" />

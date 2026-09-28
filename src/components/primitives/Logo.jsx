@@ -1,47 +1,45 @@
 /**
- * The OGM badge: an aperture blade ring around a warm core, echoing both a lens
- * iris and a halo. Scales cleanly from the 32px nav badge to the footer lockup.
+ * The One Gospel Media mark: a torch flame rising behind a cross, set in the
+ * gold ring that doubles as the "O" of ONE.
+ *
+ * The artwork is lifted from the company's own business card rather than
+ * redrawn, so it matches print exactly. Two variants ship:
+ *
+ *   ogm-mark.png           navy cross — for light backgrounds and print
+ *   ogm-mark-reversed.png  parchment cross — for this site's obsidian canvas
+ *
+ * The reversed file exists because the brand navy (#002047) is all but
+ * invisible on a near-black page; only the cross is recoloured, the gold is
+ * untouched. The wordmark stays live text so it renders crisply at any size
+ * and remains selectable and searchable.
  */
-export default function Logo({ className = 'h-9 w-9', withWordmark = false, wordmarkClass = '' }) {
+export default function Logo({
+  className = 'h-11 w-auto',
+  withWordmark = false,
+  wordmarkClass = '',
+  variant = 'reversed',
+}) {
+  const src = variant === 'reversed' ? '/brand/ogm-mark-reversed.png' : '/brand/ogm-mark.png';
+
   const mark = (
-    <svg viewBox="0 0 64 64" className={className} role="img" aria-label="One Gospel Media">
-      <defs>
-        <radialGradient id="ogm-core" cx="50%" cy="38%" r="70%">
-          <stop offset="0%" stopColor="#F5B544" />
-          <stop offset="100%" stopColor="#B3712A" />
-        </radialGradient>
-        <linearGradient id="ogm-ring" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stopColor="#F6F1E7" stopOpacity="0.9" />
-          <stop offset="55%" stopColor="#F5B544" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#B3712A" stopOpacity="0.5" />
-        </linearGradient>
-      </defs>
-      <circle cx="32" cy="32" r="30" fill="#0A0A0C" />
-      <circle cx="32" cy="32" r="19" fill="none" stroke="url(#ogm-ring)" strokeWidth="2.4" />
-      {/* Six aperture blades. */}
-      {[0, 60, 120, 180, 240, 300].map((deg) => (
-        <line
-          key={deg}
-          x1="32"
-          y1="32"
-          x2="32"
-          y2="13"
-          stroke="url(#ogm-ring)"
-          strokeWidth="1.5"
-          strokeOpacity="0.45"
-          strokeLinecap="round"
-          transform={`rotate(${deg} 32 32)`}
-        />
-      ))}
-      <circle cx="32" cy="32" r="7.5" fill="url(#ogm-core)" />
-      <circle cx="29.5" cy="29.5" r="2.2" fill="#FFF8EC" fillOpacity="0.75" />
-    </svg>
+    <img
+      src={src}
+      /*
+        Decorative when the wordmark sits beside it — the text already names
+        the company, so announcing it twice only adds noise for screen readers.
+      */
+      alt={withWordmark ? '' : 'One Gospel Media'}
+      width={240}
+      height={458}
+      decoding="async"
+      className={`${className} shrink-0 select-none object-contain`}
+    />
   );
 
   if (!withWordmark) return mark;
 
   return (
-    <span className="flex items-center gap-3">
+    <span className="flex items-center gap-2.5">
       {mark}
       <span className={`flex flex-col leading-none ${wordmarkClass}`}>
         <span className="font-display text-[0.95rem] tracking-[0.14em] text-white">ONE GOSPEL</span>

@@ -3,16 +3,25 @@
  * marketing team can edit words without touching layout or motion code.
  */
 
+/**
+ * Identity and contact details, taken from One Gospel Media's own business card.
+ *
+ * `phone` is the number as it is printed and as a Nigerian caller would dial it;
+ * `phoneHref` is the same number in E.164 so the tel: link also works for anyone
+ * calling from outside Nigeria.
+ */
 export const BRAND = {
   name: 'One Gospel Media',
   short: 'OGM',
-  tagline: 'Communicating Truth. Capturing Moments. Inspiring Generations.',
+  tagline: 'Capturing Moments · Sharing the Gospel',
+  strapline: 'Professional · Creative · Gospel Focused',
   manifesto:
     'We believe the Gospel deserves the same craft the world reserves for its blockbusters. Every frame we light, every story we cut, every stream we send out is an act of stewardship — truth carried with excellence, so that it travels further than the room it was born in.',
-  email: 'hello@onegospelmedia.com',
-  phone: '+1 (555) 014-2200',
-  location: 'Studio + Field Unit · Available Worldwide',
-  founded: 2019,
+  email: 'westmonty4@gmail.com',
+  phone: '0806 689 2144',
+  phoneHref: '+2348066892144',
+  location: 'Plot 2044A Ohafia Close, Beechwood Estate, Lagos, Nigeria',
+  principal: { name: 'Monty West', role: 'MD/Director' },
 };
 
 export const NAV_LINKS = [

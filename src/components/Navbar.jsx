@@ -77,7 +77,7 @@ export default function Navbar() {
             className="flex shrink-0 items-center rounded-full"
             aria-label="One Gospel Media — back to top"
           >
-            <Logo className="h-9 w-9" withWordmark />
+            <Logo className="h-10 w-auto" withWordmark />
           </a>
 
           {/* Desktop links */}
@@ -110,15 +110,24 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-2">
-            <GlowButton
-              href="#booking"
-              onClick={(e) => handleNavClick(e, '#booking')}
-              size="sm"
-              className="hidden sm:inline-flex"
-              icon={ArrowUpRight}
-            >
-              Book a Consultation
-            </GlowButton>
+            {/*
+              Wrapped rather than given `hidden sm:inline-flex` directly.
+              GlowButton hardcodes `inline-flex`, and Tailwind 4 emits
+              `.inline-flex` after `.hidden`, so the button's own base class
+              wins over a passed `hidden` and it renders at every width —
+              which crushed the mobile header. The wrapper carries no
+              competing display class, so `hidden` applies cleanly below `sm`.
+            */}
+            <span className="hidden sm:inline-flex">
+              <GlowButton
+                href="#booking"
+                onClick={(e) => handleNavClick(e, '#booking')}
+                size="sm"
+                icon={ArrowUpRight}
+              >
+                Book a Consultation
+              </GlowButton>
+            </span>
 
             <button
               type="button"
